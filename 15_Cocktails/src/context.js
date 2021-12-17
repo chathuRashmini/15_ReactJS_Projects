@@ -11,7 +11,7 @@ const AppProvider = ({ children }) => {
   const [searchTerm, setsearchTerm] = useState('a')
   const [cocktails, setcocktails] = useState([])
 
-  const fetchDrinks = async () => {
+  const fetchDrinks = useCallback (async () => {
     setloading(true)
 
     try {
@@ -42,7 +42,7 @@ const AppProvider = ({ children }) => {
       setloading(false)
       console.log(error)
     }
-  }
+  }, [searchTerm])
 
   useEffect(() => {
     fetchDrinks()
